@@ -3,6 +3,9 @@ from dataset import Data
 from trainer import Trainer, get_data_from_datasets, predict_proba_on_mesh_tensor
 from visualization_utils import make_meshgrid,  plot_predictions
 from torch.utils.data import DataLoader
+from sklearn.metrics import accuracy_score
+import warnings
+warnings.filterwarnings("ignore")
 
 #задаем слои сети
 list_of_layers = [(2, 5), (5, 3), (3, 2)]
@@ -22,6 +25,12 @@ test_dataloader = DataLoader(test_data, batch_size=50, shuffle = False)
 trainer.fit(train_dataloader, n_epochs = 100)
 #делаем предсказание на тестовых данных
 test_predictions_proba = trainer.predict_proba(test_dataloader)
+
+#########################################ДОБАВЛЕННАЯ_ЧАСТЬ#################################################
+#оценим полученный результат
+y_pred = [0 if test_predictions_proba[i][0] > test_predictions_proba[i][1] else 1 for i in range(test_predictions_proba.shape[0])]
+print("Accuracy: ", accuracy_score(test_data.y, y_pred))
+###########################################################################################################
 
 #визуализируем результат и сохраняем в отдельный файл
 X_train, X_test, y_train, y_test = get_data_from_datasets(train_data, test_data)

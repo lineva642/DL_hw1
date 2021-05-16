@@ -76,9 +76,10 @@ def get_data_from_datasets(train_dataset, test_dataset):
     return X_train, X_test, y_train, y_test
 def predict_proba_on_mesh_tensor(clf, xx, yy):
     q = torch.Tensor(np.c_[xx.ravel(), yy.ravel()])
-    print(q)
-    print(type(q))
+    # print(q)
+    # print(type(q))
     Z = clf.predict_proba_tensor(q)[:, 1]
     Z = Z.reshape(xx.shape)
+    # print(Z)
     return Z
     
