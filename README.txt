@@ -1,7 +1,7 @@
 1. Установка окружения:
 Выполните в командной строке следующие команды:
 sudo pip install virtualenv
-cd /путь/к/папке/hw1
+cd /путь/к/папке/DL_hw1
 virtualenv venv --python=python3.8
 source venv/bin/activate
 pip install -r requirements.txt
@@ -12,4 +12,4 @@ python example.py
 
 3. Результаты:
 Значение accuracy по окончании работы программы
-Рисунок с результатом в папке hw1
+Рисунок с результатом в папке DL_hw1
